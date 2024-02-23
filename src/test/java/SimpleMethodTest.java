@@ -1,4 +1,5 @@
 import org.example.junittest.SimpleMethod;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,6 +11,13 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SimpleMethodTest {
+
+    SimpleMethod simpleMethod;
+
+    @BeforeEach
+    void init(){
+        simpleMethod=new SimpleMethod();
+    }
     @ParameterizedTest
     @ValueSource(strings = {"", "  "})
     void isBlank_ShouldReturnTrueForNullOrBlankStrings(String input) {
@@ -58,7 +66,6 @@ public class SimpleMethodTest {
     @Test
     @DisplayName("Simple Method Multiply Test")
     void multiplyTest(){
-        SimpleMethod simpleMethod=new SimpleMethod();
         assertAll(
                 ()-> assertEquals(2,simpleMethod.multiply(2, 1)),
                 () -> assertEquals(4, simpleMethod.multiply(2, 2)),
